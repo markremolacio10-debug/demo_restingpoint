@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        UPDATED: converted from Login.php to a static, view-only page for GitHub Pages.
+        - Removed: PHP session check, rp_asset() cache-busting, csrf_token() meta + hidden inputs
+        - Removed: login / admin / register / OTP / display-name forms (no backend on GitHub Pages)
+        - Added: one "Demo only" modal that every Log in / Staff / Create account button opens
+        - Asset links use a manual ?v=1 cache-buster; bump the number when you change a file
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>RestingPoint | Find your way to your loved ones</title>
+    <meta name="description" content="RestingPoint is a map-based navigation system with a static route guide for Himlayang Pilipino Memorial Park.">
+    <meta name="theme-color" content="#0b1a0e">
+    <link rel="icon" href="images/iconss.jpg">
+    <link rel="stylesheet" href="css/landing.css?v=1">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<div id="hero3d-canvas" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<header class="nav" id="nav">
+    <a class="nav-brand" href="#top" aria-label="RestingPoint home">
+        <span class="brand-mark" aria-hidden="true">✝</span>
+        <span class="brand-name">RestingPoint</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+        <a href="#navigate">Navigate</a>
+        <a href="#grounds">The Grounds</a>
+        <a href="#access">Access</a>
+        <a href="#visit">Visit</a>
+    </nav>
+    <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="guest_map.html">Guest map</a>
+        <button class="btn btn-gold btn-sm" id="navLogin" type="button">Log in</button>
+        <button class="nav-staff" id="navStaff" type="button">Staff</button>
+    </div>
+</header>
+
+<!-- ── SECTION RAIL ────────────────────────────────────────── -->
+<nav class="rail" id="rail" aria-label="Page sections">
+    <a href="#top" class="rail-dot"><span class="sr-only">Welcome</span></a>
+    <a href="#navigate" class="rail-dot"><span class="sr-only">Navigate</span></a>
+    <a href="#grounds" class="rail-dot"><span class="sr-only">The grounds</span></a>
+    <a href="#access" class="rail-dot"><span class="sr-only">Access</span></a>
+    <a href="#visit" class="rail-dot"><span class="sr-only">Visit</span></a>
+    <a href="#creators" class="rail-dot"><span class="sr-only">Creators</span></a>
+</nav>
+
+<main id="main">
+
+    <!-- ── HERO ────────────────────────────────────────────── -->
+    <section class="hero" id="top" data-rail="0">
+        <p class="eyebrow reveal">Himlayang Pilipino Memorial Park &middot; Quezon City</p>
+        <h1 class="reveal">Find your way to the&nbsp;ones you&nbsp;love.</h1>
+        <p class="lead reveal">
+            RestingPoint draws the shortest walking route to the plot, street by street,
+            from wherever you are in the park.
+        </p>
+
+        <div class="hero-cta reveal">
+            <a class="btn btn-ghost" href="guest_map.html">Open the map as guest</a>
+            <button class="btn btn-outline" id="enterBtn" type="button">Log in or create an account</button>
+        </div>
+
+        <a class="scroll-hint" href="#navigate" aria-label="Scroll to the next section">
+            <span>Scroll</span><i aria-hidden="true"></i>
+        </a>
+    </section>
+
+    <!-- ── NAVIGATE ────────────────────────────────────────── -->
+    <section class="section" id="navigate" data-rail="1">
+        <div class="split">
+            <div class="split-text">
+                <div class="section-head reveal">
+                    <span class="kicker">Navigate</span>
+                    <h2>Directions in plain words.</h2>
+                    <p class="section-lead">No pins to decode. The route becomes steps named after the streets you are standing on.</p>
+                </div>
+                <ul class="checks reveal">
+                    <li><b>Walking or driving</b> modes, each with its own route and time.</li>
+                    <li><b>Turn-by-turn steps</b> using the park's own street names.</li>
+                    <li><b>Live location</b> follows you once you are near the grounds.</li>
+                    <li><b>3D preview</b> lets you fly the route before you set out.</li>
+                </ul>
+            </div>
+            <aside class="card dir-card reveal" aria-label="Example directions">
+                <header class="dir-head">
+                    <span class="dir-title">Sample directions</span>
+                    <span class="dir-meta"><span data-route="distM" data-fmt="m">&ndash;</span> &middot; <span data-route="walkMin" data-fmt="min">&ndash;</span></span>
+                </header>
+                <ol class="dir-list" id="dirList">
+                    <li class="dir-step dir-wait">Calculating route&hellip;</li>
+                </ol>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ── THE GROUNDS ─────────────────────────────────────── -->
+    <section class="section" id="grounds" data-rail="2">
+        <div class="section-head reveal">
+            <span class="kicker">The grounds</span>
+            <h2>Landmarks you will pass along the way.</h2>
+            <p class="section-lead">From the Chapel Rotunda to the lagoon and the shrines, every landmark is on the map, so you always know where you are.</p>
+        </div>
+        <div class="photo-carousel reveal" id="photoCarousel" role="region" aria-roledescription="carousel" aria-label="Park landmarks">
+            <div class="photo-track" id="photoTrack">
+                <figure class="photo-card"><img loading="lazy" draggable="false" src="images/landmarks/tahanan_ng_alaala.jpg" alt="" onerror="this.remove()"><figcaption>Tahanan ng Alaala</figcaption></figure>
+                <figure class="photo-card"><img loading="lazy" draggable="false" src="images/estab/lagoon.jpg" alt="" onerror="this.remove()"><figcaption>Lagoon</figcaption></figure>
+                <figure class="photo-card"><img loading="lazy" draggable="false" src="images/landmarks/tandang_sora_monument.jpg" alt="" onerror="this.remove()"><figcaption>Tandang Sora Monument</figcaption></figure>
+                <figure class="photo-card"><img loading="lazy" draggable="false" src="images/landmarks/Teresa-magbanua.jpg" alt="" onerror="this.remove()"><figcaption>Teresa Magbanua Shrine</figcaption></figure>
+                <figure class="photo-card"><img loading="lazy" draggable="false" src="images/estab/dambana_ng_alaala.jpg" alt="" onerror="this.remove()"><figcaption>Dambana ng Alaala</figcaption></figure>
+                <figure class="photo-card"><img loading="lazy" draggable="false" src="images/landmarks/florante_at_laura.png" alt="" onerror="this.remove()"><figcaption>Florante at Laura</figcaption></figure>
+            </div>
+        </div>
+        <div class="carousel-ctl reveal">
+            <button class="btn btn-ghost btn-sm" id="photoPause" type="button" aria-pressed="false"></button>
+            <span class="carousel-tip">Drag or swipe to browse</span>
+        </div>
+    </section>
+
+    <!-- ── ACCESS ──────────────────────────────────────────── -->
+    <section class="section" id="access" data-rail="3">
+        <div class="section-head reveal">
+            <span class="kicker">Access</span>
+            <h2>Start as a guest. Sign in when you need more.</h2>
+        </div>
+        <div class="tiers">
+            <article class="card tier reveal">
+                <h3>Guest</h3>
+                <p class="tier-sub">No account needed</p>
+                <ul>
+                    <li>Browse the park's roads and paths</li>
+                    <li>Search streets on the map</li>
+                    <li>See what an account unlocks</li>
+                </ul>
+                <a class="btn btn-ghost" href="guest_map.html">Open guest map</a>
+            </article>
+            <article class="card tier tier-featured reveal">
+                <span class="tier-badge">Most families</span>
+                <h3>Visitor</h3>
+                <p class="tier-sub">Free account, email-verified</p>
+                <ul>
+                    <li>Find records and route to the plot</li>
+                    <li>Walking and driving directions</li>
+                    <li>Gallery, announcements and chat help</li>
+                    <li>Send maintenance requests</li>
+                </ul>
+                <button class="btn btn-gold" id="tierSignup" type="button">Create an account</button>
+            </article>
+            <article class="card tier reveal">
+                <h3>Staff</h3>
+                <p class="tier-sub">Authorized personnel</p>
+                <ul>
+                    <li>Manage records and map locations</li>
+                    <li>Publish announcements</li>
+                    <li>Answer inquiries and feedback</li>
+                    <li>Review accounts and activity</li>
+                </ul>
+                <button class="btn btn-outline" id="tierStaff" type="button">Staff login</button>
+            </article>
+        </div>
+    </section>
+
+    <!-- ── VISIT ───────────────────────────────────────────── -->
+    <section class="section" id="visit" data-rail="4">
+        <div class="section-head reveal">
+            <span class="kicker">Visit</span>
+            <h2>Plan your visit.</h2>
+        </div>
+        <div class="visit-grid">
+            <article class="card visit-card reveal">
+                <h3>Our location</h3>
+                <address>
+                    Himlayan Road, Bgy. Pasong Tamo, Tandang Sora,<br>
+                    Quezon City, Philippines 1107<br>
+                    Pantranco, Metro Manila
+                </address>
+                <div class="mini-map">
+                    <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=121.047413%2C14.679405%2C121.059413%2C14.687405&amp;layer=mapnik&amp;marker=14.683405%2C121.053413"
+                        loading="lazy" title="Map: Himlayang Pilipino Memorial Park"></iframe>
+                </div>
+            </article>
+
+            <article class="card visit-card reveal">
+                <h3>Contact us</h3>
+                <ul class="contact-list">
+                    <li><a href="tel:+639171306930">0917-130-6930</a></li>
+                    <li><a href="tel:+639688964850">0968-896-4850</a></li>
+                    <li><a href="tel:+639177135034">0917-713-5034</a></li>
+                    <li><a href="mailto:f.tolentino@himlayangpilipino.org">f.tolentino@himlayangpilipino.org</a></li>
+                </ul>
+                <h3 class="h3-gap">Follow us</h3>
+                <div class="social-row">
+                    <a class="chip" href="https://www.facebook.com/himlayangpilipinoinc/" target="_blank" rel="noopener noreferrer">
+                        <span class="chip-ico fb" aria-hidden="true">f</span>Facebook
+                    </a>
+                    <a class="chip" href="https://www.youtube.com/channel/UC8sQZY4wHeF7XeTTBBsRyDw" target="_blank" rel="noopener noreferrer">
+                        <span class="chip-ico yt" aria-hidden="true">▶</span>YouTube
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ── CREATORS ────────────────────────────────────────── -->
+    <section class="section section-short" id="creators" data-rail="5">
+        <div class="section-head reveal">
+            <span class="kicker">Built by</span>
+            <h2>The people behind RestingPoint.</h2>
+        </div>
+        <div class="social-row reveal">
+            <a class="chip" href="AboutUsViewOnly.html"><span class="chip-ico" aria-hidden="true">i</span>About us</a>
+            <a class="chip" href="https://www.instagram.com/markzzedd/#" target="_blank" rel="noopener noreferrer">
+                <span class="chip-ico" aria-hidden="true">✎</span>Mark Remolacio
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2026 RestingPoint. All rights reserved.</p>
+</footer>
+
+<!-- ── DEMO-ONLY MODAL ─────────────────────────────────────────
+     UPDATED: replaces the old login / admin / register / OTP / display-name panels.
+     Reuses the existing .modal-* classes from landing.css so the look stays the same.
+     The title (#demoTitle) is set by landing.js depending on which button was clicked. -->
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+<div class="modal-container" id="modalContainer" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+
+    <button class="modal-close" id="modalClose" type="button" aria-label="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+    </button>
+
+    <div class="modal-panel active" id="panelDemo">
+        <div class="modal-mark" aria-hidden="true">✝</div>
+        <h2 class="modal-title" id="demoTitle">Demo only</h2>
+        <p class="modal-subtitle">Not available online</p>
+        <p class="modal-footer-text" id="demoText">
+            This is a view-only landing page. Accounts, login and staff tools run on the full
+            RestingPoint system, which is not hosted here.
+        </p>
+        <div class="modal-buttons">
+            <a href="guest_map.html" class="modal-btn guest-btn">
+                <span class="modal-btn-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span class="modal-btn-content">
+                    <span class="modal-btn-label">Open the guest map</span>
+                    <span class="modal-btn-desc">Browse the park's roads and paths</span>
+                </span>
+            </a>
+        </div>
+        <button type="button" class="skip-btn" id="demoClose">Close</button>
+    </div>
+
+</div><!-- /.modal-container -->
+</div><!-- /.modal-overlay -->
+
+<script src="js/landing.js?v=1" defer></script>
+<script src="js/hero3d.js?v=1" defer></script>
+<script>
+/* Safety net: if js/landing.js has not finished starting after 2.5s (slow network,
+   script error), un-hide the page instead of leaving an empty hero. */
+setTimeout(function () {
+    if (!window.__rpReady) document.documentElement.classList.remove('js');
+}, 2500);
+</script>
+</body>
+</html>

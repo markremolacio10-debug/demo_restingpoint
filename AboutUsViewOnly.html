@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | RestĪngPoint</title>
+    <link rel="icon" href="images/iconss.jpg">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0f0d;
+            color: #e0e0e0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 15, 13, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(45, 106, 79, 0.3);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #52b788;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #d4a843;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: linear-gradient(
+                135deg,
+                #0a0f0d 0%,
+                #1a2e28 30%,
+                #0d1f17 60%,
+                #0a0f0d 100%
+            );
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                ellipse at 30% 50%,
+                rgba(82, 183, 136, 0.05) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                ellipse at 70% 50%,
+                rgba(212, 168, 67, 0.03) 0%,
+                transparent 50%
+            );
+            animation: floatBg 15s ease-in-out infinite;
+        }
+
+        @keyframes floatBg {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 1px solid rgba(82, 183, 136, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #52b788;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: rgba(82, 183, 136, 0.05);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+
+        .hero h1 .highlight {
+            color: #52b788;
+        }
+
+        .hero h1 .accent {
+            color: #d4a843;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section {
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #d4a843;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: rgba(212, 168, 67, 0.4);
+        }
+
+        .section-label::before {
+            right: calc(100% + 15px);
+        }
+
+        .section-label::after {
+            left: calc(100% + 15px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #52b788, #d4a843);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* ===== MAIN DEVELOPER SECTION ===== */
+        .main-dev-section {
+            background: linear-gradient(180deg, #0a0f0d, #0f1a15, #0a0f0d);
+            padding-top: 100px;
+        }
+
+        .main-dev-card {
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(145deg, rgba(26, 46, 40, 0.5), rgba(10, 15, 13, 0.7));
+            border: 1px solid rgba(82, 183, 136, 0.15);
+            border-radius: 24px;
+            padding: 50px 40px;
+            overflow: hidden;
+        }
+
+        .main-dev-card::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(82, 183, 136, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .main-dev-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid rgba(82, 183, 136, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #1a2e28, #2d6a4f);
+            margin: 0 auto 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(82, 183, 136, 0.2);
+        }
+
+        .main-dev-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .main-dev-card h3 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .main-dev-role {
+            font-size: 0.95rem;
+            color: #52b788;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .main-dev-desc {
+            font-size: 1rem;
+            color: #8a9a8f;
+            line-height: 1.9;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team-section {
+            background: linear-gradient(180deg, #0a0f0d, #111f1a, #0a0f0d);
+        }
+
+        .team-card {
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(145deg, rgba(26, 46, 40, 0.4), rgba(10, 15, 13, 0.6));
+            border: 1px solid rgba(82, 183, 136, 0.12);
+            border-radius: 24px;
+            padding: 60px 50px;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(82, 183, 136, 0.06), transparent 70%);
+            pointer-events: none;
+        }
+
+        .team-avatars {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(82, 183, 136, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #1a2e28, #2d6a4f);
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .avatar:hover {
+            transform: translateY(-5px);
+            border-color: #52b788;
+        }
+
+        .avatar:nth-child(even) {
+            background: linear-gradient(135deg, #2a2515, #4a3d20);
+            border-color: rgba(212, 168, 67, 0.3);
+        }
+
+        .avatar:nth-child(even):hover {
+            border-color: #d4a843;
+        }
+
+        .team-card h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .team-card .team-subtitle {
+            font-size: 0.9rem;
+            color: #52b788;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .team-card p.team-desc {
+            font-size: 1.05rem;
+            color: #8a9a8f;
+            line-height: 1.9;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .team-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .team-tag {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(82, 183, 136, 0.2);
+            color: #52b788;
+            background: rgba(82, 183, 136, 0.05);
+            transition: all 0.3s;
+        }
+
+        .team-tag:hover {
+            background: rgba(82, 183, 136, 0.1);
+            border-color: rgba(82, 183, 136, 0.4);
+        }
+
+        .team-tag:nth-child(even) {
+            border-color: rgba(212, 168, 67, 0.2);
+            color: #d4a843;
+            background: rgba(212, 168, 67, 0.05);
+        }
+
+        .team-tag:nth-child(even):hover {
+            background: rgba(212, 168, 67, 0.1);
+            border-color: rgba(212, 168, 67, 0.4);
+        }
+
+        /* ===== STORY SECTION ===== */
+        .story-section {
+            background: linear-gradient(180deg, #0a0f0d, #0f1a15, #0a0f0d);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #1a2e28, #2d6a4f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(82, 183, 136, 0.2);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(82, 183, 136, 0.3), transparent, rgba(212, 168, 67, 0.2));
+            border-radius: 22px;
+            z-index: -1;
+        }
+
+        .map-visual {
+            width: 80%;
+            height: 70%;
+            position: relative;
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #52b788;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 15px rgba(82, 183, 136, 0.5);
+            animation: pinPulse 2s ease-in-out infinite;
+        }
+
+        .map-pin::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 10px;
+            height: 10px;
+            background: #0a0f0d;
+            border-radius: 50%;
+        }
+
+        .map-pin:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+        .map-pin:nth-child(2) { top: 50%; left: 60%; animation-delay: 0.5s; }
+        .map-pin:nth-child(3) { top: 70%; left: 25%; animation-delay: 1s; }
+        .map-pin:nth-child(4) { top: 35%; left: 75%; animation-delay: 1.5s; background: #d4a843; box-shadow: 0 0 15px rgba(212, 168, 67, 0.5); }
+
+        .map-grid-line {
+            position: absolute;
+            background: rgba(82, 183, 136, 0.08);
+        }
+
+        .map-grid-line.horizontal {
+            width: 100%;
+            height: 1px;
+        }
+
+        .map-grid-line.vertical {
+            width: 1px;
+            height: 100%;
+        }
+
+        .map-grid-line:nth-child(5) { top: 25%; }
+        .map-grid-line:nth-child(6) { top: 50%; }
+        .map-grid-line:nth-child(7) { top: 75%; }
+        .map-grid-line:nth-child(8) { left: 25%; }
+        .map-grid-line:nth-child(9) { left: 50%; }
+        .map-grid-line:nth-child(10) { left: 75%; }
+
+        @keyframes pinPulse {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.2); }
+        }
+
+        .story-text h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .story-text h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #52b788, #d4a843);
+            border-radius: 2px;
+        }
+
+        .story-text p {
+            font-size: 1.02rem;
+            color: #a0b0a5;
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        /* ===== MISSION & VISION ===== */
+        .mv-section {
+            background: linear-gradient(180deg, #0a0f0d, #0d1912, #0a0f0d);
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .mv-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(26, 46, 40, 0.6), rgba(10, 15, 13, 0.8));
+            border: 1px solid rgba(82, 183, 136, 0.15);
+            border-radius: 20px;
+            padding: 50px 40px;
+            overflow: hidden;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(82, 183, 136, 0.35);
+        }
+
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #52b788, #2d6a4f);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .mv-card:nth-child(2)::before {
+            background: linear-gradient(to right, #d4a843, #b8860b);
+        }
+
+        .mv-card:hover::before {
+            opacity: 1;
+        }
+
+        .mv-card-bg {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 8rem;
+            opacity: 0.03;
+            font-weight: 700;
+            color: #52b788;
+            pointer-events: none;
+        }
+
+        .mv-card:nth-child(2) .mv-card-bg {
+            color: #d4a843;
+        }
+
+        .mv-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .mv-card:nth-child(1) .mv-icon {
+            background: linear-gradient(135deg, rgba(82, 183, 136, 0.15), rgba(82, 183, 136, 0.05));
+            border: 1px solid rgba(82, 183, 136, 0.2);
+        }
+
+        .mv-card:nth-child(2) .mv-icon {
+            background: linear-gradient(135deg, rgba(212, 168, 67, 0.15), rgba(212, 168, 67, 0.05));
+            border: 1px solid rgba(212, 168, 67, 0.2);
+        }
+
+        .mv-card h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .mv-card p {
+            font-size: 1rem;
+            color: #8a9a8f;
+            line-height: 1.9;
+        }
+
+        /* ===== VALUES/FEATURES ===== */
+        .values-section {
+            background: #0a0f0d;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 16px;
+            background: rgba(26, 46, 40, 0.2);
+            border: 1px solid rgba(82, 183, 136, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .value-card:hover {
+            background: rgba(26, 46, 40, 0.4);
+            border-color: rgba(82, 183, 136, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .value-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(82, 183, 136, 0.1), rgba(82, 183, 136, 0.02));
+            border: 1px solid rgba(82, 183, 136, 0.15);
+        }
+
+        .value-card h4 {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            color: #7a8a7f;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(82, 183, 136, 0.1);
+            background: #080c0a;
+        }
+
+        .footer p {
+            color: #5a6a5f;
+            font-size: 0.9rem;
+        }
+
+        .footer .footer-logo {
+            color: #52b788;
+            font-weight: 600;
+        }
+
+        .footer .footer-logo span {
+            color: #d4a843;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mv-card {
+                padding: 35px 25px;
+            }
+
+            .team-card {
+                padding: 40px 25px;
+            }
+
+            .main-dev-card {
+                padding: 40px 25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (Logo Only) -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Home - Rest<span>Ī</span>ngPoint</a>
+    
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">About Us</div>
+            <h1>
+                <span class="highlight">Rest</span><span class="accent">Ī</span><span class="highlight">ngPoint</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- MAIN DEVELOPER SECTION -->
+    <section class="section main-dev-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Main Developer</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="main-dev-card fade-in">
+                <div class="main-dev-image">
+                    <img src="images/About us Icon/Mark.jpg" alt="Main Developer">
+                </div>
+                <h3>Mark Ivan Remolacio</h3>
+                <p class="main-dev-role">
+                    Vibe Coder 
+                </p>
+                <p class="main-dev-desc">
+                    Gardner Student
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="section team-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-label">The People Behind</div>
+                <h2 class="section-title">Our Team</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-avatars">
+                    <div class="avatar">
+                        <img src="images/About us Icon/Calpo.jpg" alt="Calpo">
+                    </div>
+                    <div class="avatar">
+                        <img src="images/About us Icon/jo.png" alt="Jo">
+                    </div>
+                    <div class="avatar">
+                        <img src="images/About us Icon/tiff.png" alt="Tiff">
+                    </div>
+                    <div class="avatar">
+                        <img src="images/About us Icon/justin.png" alt="Justin">
+                    </div>
+                    <div class="avatar">
+                        <img src="images/About us Icon/dev.png" alt="Dev">
+                    </div>
+                </div>
+                <h3>Student Developers</h3>
+                <p class="team-subtitle">Information Technology</p>
+                <p class="team-desc">
+                    We are Information Technology students dedicated to developing practical systems 
+                    that solve real-world problems through innovation and technology.
+                </p>
+                <div class="team-tags">
+                    <span class="team-tag">Innovation</span>
+                    <span class="team-tag">Technology</span>
+                    <span class="team-tag">Problem Solving</span>
+                    <span class="team-tag">Capstone Project</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY SECTION -->
+    <section class="section story-section">
+        <div class="section-container">
+            <div class="story-grid">
+                <div class="story-image fade-in">
+                    <div class="map-visual">
+                        <div class="map-pin"></div>
+                        <div class="map-pin"></div>
+                        <div class="map-pin"></div>
+                        <div class="map-pin"></div>
+                        <div class="map-grid-line horizontal"></div>
+                        <div class="map-grid-line horizontal"></div>
+                        <div class="map-grid-line horizontal"></div>
+                        <div class="map-grid-line vertical"></div>
+                        <div class="map-grid-line vertical"></div>
+                        <div class="map-grid-line vertical"></div>
+                    </div>
+                </div>
+                <div class="story-text fade-in">
+                    <h2>Our Story</h2>
+                    <p>
+                        Our team of student developers created this system as part of our 
+                        <strong style="color: #d4a843;">Capstone Project</strong> to address the common problem 
+                        of difficulty in locating graves, especially in large cemetery areas.
+                    </p>
+                    <p>
+                        By integrating a searchable database and an interactive map interface, we aim to provide 
+                        a faster, more convenient, and stress-free experience for visitors.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section mv-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-label">What Drives Us</div>
+                <h2 class="section-title">Mission &amp; Vision</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="mv-grid">
+                <div class="mv-card fade-in">
+                    <div class="mv-card-bg">M</div>
+                    <div class="mv-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>
+                        To provide an efficient, accurate, and user-friendly navigation system that simplifies 
+                        cemetery visits and enhances accessibility for everyone.
+                    </p>
+                </div>
+
+                <div class="mv-card fade-in">
+                    <div class="mv-card-bg">V</div>
+                    <div class="mv-icon">🔭</div>
+                    <h3>Our Vision</h3>
+                    <p>
+                        To become a reliable digital solution for cemetery management and visitor navigation, 
+                        scalable for full implementation across multiple cemetery locations in the future.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE OFFER -->
+    <section class="section values-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-label">What We Offer</div>
+                <h2 class="section-title">Core Features</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card fade-in">
+                    <div class="value-icon">🗺️</div>
+                    <h4>Interactive Map</h4>
+                    <p>Navigate the cemetery with an easy-to-use interactive map interface.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">🔍</div>
+                    <h4>Grave Search</h4>
+                    <p>Quickly locate graves through our searchable database system.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">📍</div>
+                    <h4>Landmark Guide</h4>
+                    <p>Find important facilities and landmarks within the cemetery grounds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>
+            &copy; 2026 <span class="footer-logo">Rest<span>Ī</span>ngPoint</span> &mdash; 
+            Cemetery Navigation with Static Route Guide
+        </p>
+    </footer>
+
+    <!-- SCROLL ANIMATION SCRIPT -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(8, 12, 10, 0.98)';
+                navbar.style.borderBottomColor = 'rgba(82, 183, 136, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(10, 15, 13, 0.95)';
+                navbar.style.borderBottomColor = 'rgba(45, 106, 79, 0.3)';
+            }
+        });
+    </script>
+
+</body>
+</html>
